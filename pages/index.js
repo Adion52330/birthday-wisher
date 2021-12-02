@@ -1,82 +1,114 @@
-import Head from 'next/head'
+import Head from "next/head";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Home() {
+  const router = useRouter();
+  const { birthName, theme } = router.query;
+  const [name, setName] = useState("");
+  const [color, setColor] = useState("#0070f3");
+  const colors = [
+    {
+      theme: "#0070f3",
+    },
+    {
+      theme: "#40c79a",
+    },
+    {
+      theme: "#a27df8",
+    },
+    {
+      theme: "#fccc50",
+    },
+    {
+      theme: "#e74a6d",
+    },
+  ];
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col bg-gray-200 items-center justify-center min-h-screen py-2">
       <Head>
-        <title>Create Next App</title>
+        <title>Birthday Wisher - Adion</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
+      <main className="flex flex-col items-center justify-center">
+        <h1 className="text-4xl font-bold my-4">
+          Welcome to{" "}
+          <span style={{ color: color }} className="transition">
+            Birthday
+          </span>{" "}
+          Wisher
         </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            pages/index.js
-          </code>
-        </p>
-
-        <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <abbr
+          title="How To Use:
+          1. Enter your name in the input box
+          2. Click on the button to change the theme
+          3. Click on the button to get your wish
+          4. Copy the link to which is redirected to
+          5. Share the link with your friends
+          "
+          className="my-4 border-2 border-indigo-500 px-3 rounded-full"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
-        </a>
-      </footer>
+          i
+        </abbr>
+        <div className="flex justify-around items-center w-full m-5">
+          {colors.map((color) => (
+            <div
+              className="bg-gray-200 rounded-full w-10 h-10 m-2 cursor-pointer"
+              style={{ backgroundColor: color.theme }}
+              onClick={() => setColor(color.theme)}
+            ></div>
+          ))}
+        </div>
+        <div className="flex p-4 w-full rounded-full bg-white">
+          <input
+            type="text"
+            className="flex-1 p-3 focus:outline-none m-2"
+            placeholder="Enter the name of the person"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Link
+            passHref
+            href={{
+              pathname: "/birthday",
+              query: { birthName: name, theme: color },
+            }}
+          >
+            <button
+              className="flex-[0.1] p-5 m-2 rounded-full shadow-xl hover:shadow-2xl z-10 transition"
+              style={{
+                backgroundColor: color,
+                color: "white",
+                boxShadow: `0px 0px 7px 1px ${color}`,
+              }}
+            >
+              GO!
+            </button>
+          </Link>
+        </div>
+        <br />
+        <br />
+        <h2>
+          Created by{" "}
+          <a
+            href="https://adion.vercel.app/"
+            target="_blank"
+            className="font-bold transition"
+            style={{ color: color }}
+          >
+            Adion
+          </a>
+        </h2>
+      </main>
     </div>
-  )
+  );
 }
+
+// Colors to use
+// #0070f3
+// #40c79a
+// #a27df8
+// #fccc50
+// #e74a6d
