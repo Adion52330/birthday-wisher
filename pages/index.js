@@ -26,14 +26,14 @@ export default function Home() {
     },
   ];
   return (
-    <div className="flex flex-col bg-gray-200 items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col bg-gray-200 items-center justify-center min-h-screen mx-3 py-2">
       <Head>
         <title>Birthday Wisher - Adion</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold my-4">
+        <h1 className="text-4xl md:text-center font-bold my-4">
           Welcome to{" "}
           <span style={{ color: color }} className="transition">
             Birthday
