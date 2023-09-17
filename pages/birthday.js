@@ -25,7 +25,7 @@ const Birthday = () => {
       className={`flex flex-col bg-gray-200 items-center justify-center min-h-screen py-2 ${opacity} transition`}
     >
       <Head>
-        <title>Happy Birthday {birthName} - Adion</title>
+        <title>Happy Birthday {birthName}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="text-6xl font-bold my-4">
@@ -41,6 +41,16 @@ const Birthday = () => {
         id="my-canvas"
         className="fixed top-0 left-0 w-full h-screen"
       ></canvas>
+      <button
+        className="p-5 m-2 rounded-full shadow-xl hover:shadow-2xl z-10 transition"
+        style={{
+          backgroundColor: theme,
+          color: "white",
+          boxShadow: `0px 0px 7px 1px ${theme}`,
+        }}
+      >
+        Wishes from APG
+      </button>
     </div>
   );
 };
