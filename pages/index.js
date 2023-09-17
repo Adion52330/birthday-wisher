@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <div className="flex flex-col bg-gray-200 items-center justify-center min-h-screen mx-3 py-2">
       <Head>
-        <title>Birthday Wisher - Adion</title>
+        <title>HAPPY BIRTHDAY WISHES FROM APG</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
