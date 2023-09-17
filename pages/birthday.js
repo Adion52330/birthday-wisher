@@ -41,19 +41,6 @@ const Birthday = () => {
         id="my-canvas"
         className="fixed top-0 left-0 w-full h-screen"
       ></canvas>
-      <button
-        className="p-5 m-2 rounded-full shadow-xl hover:shadow-2xl z-10 transition"
-        style={{
-          backgroundColor: theme,
-          color: "white",
-          boxShadow: `0px 0px 7px 1px ${theme}`,
-        }}
-        onClick={() => {
-          router.push("/");
-        }}
-      >
-        <span className="text-xl">&larr;</span> Create for yourself
-      </button>
     </div>
   );
 };
